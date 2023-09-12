@@ -7,7 +7,7 @@ locals {
 }
 # module "sbux-cdx-dev-routing-apigw-dev" {
 #   source     = "../../modules/internet-neg"
-#   project_id = "sbux-cdx-dev"
+#   project_id = var.project_id
 
 
 #   internet_neg_fqdn                = local.data.cdx-dev
@@ -16,7 +16,7 @@ locals {
 # }
 # module "sbux-cdx-dev-routing-eapi-sd" {
 #   source     = "../../modules/internet-neg"
-#   project_id = "sbux-cdx-dev"
+#   project_id = var.project_id
 
 
 #   internet_neg_fqdn                = local.data.cdx-dev
@@ -25,7 +25,7 @@ locals {
 # }
 # module "sbux-cdx-dev-routing-test14" {
 #   source     = "../../modules/internet-neg"
-#   project_id = "sbux-cdx-dev"
+#   project_id = var.project_id
 
 
 #   internet_neg_fqdn                = local.data.cdx-dev
@@ -97,7 +97,7 @@ module "sbux-cdx-dev-routing" {
 
   for_each = { for k, v in local.data.cdx-dev : k => v }
   source ="./project-infra" #"./modules/project-infra"
-  project_id = "sbux-cdx-dev"
+  project_id = var.project_id
   internet_neg_name=replace(each.value.fqdn, ".","-")  
   //internet_neg = each.value.neg //apigw-dev.starbucks.com
   internet_neg_fqdn= each.value.fqdn  //dev-edge.cdx.starbucks.com  #### Not being used by URL Map - Only by google_compute_global_network_endpoint

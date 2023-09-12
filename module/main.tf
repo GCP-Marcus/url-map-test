@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-# locals {
-#   backend_service_1_created = length(keys(google_compute_backend_service.psc_backend)) > 1
-# }
+locals {
+  backend_service_1_created = length(keys(google_compute_backend_service.psc_backend)) > 1
+}
 
-# resource "google_compute_backend_service" "psc_backend" {
-#   provider              = google-beta
-#   for_each              = var.psc_negs
-#   project               = var.project_id
-#   name                  = "${var.name}-backend-${each.key}"
-#   port_name             = "https"
-#   protocol              = "HTTPS"
-#   load_balancing_scheme = "EXTERNAL_MANAGED"
-#   security_policy       = var.security_policy
+resource "google_compute_backend_service" "psc_backend" {
+  provider              = google-beta
+  for_each              = var.psc_negs
+  project               = var.project_id
+  name                  = "${var.name}-backend-${each.key}"
+  port_name             = "https"
+  protocol              = "HTTPS"
+  load_balancing_scheme = "EXTERNAL_MANAGED"
+  security_policy       = var.security_policy
 
-#   backend {
-#     group = each.value
-#   }
+  # backend {
+  #   group = each.value
+  # }
 
   # backend {
   #   group = var.psc_negs
@@ -110,7 +110,7 @@
   #   interval {
   #     nanos   = 0
   #     seconds = 1 # Keeping this at 1 for now as we expect high traffic volume
-  #   }
+    }
 
   #   # Maximum percentage of hosts in the load balancing pool for the backend service that can be ejected. 
   #   # Defaults to 50%.
