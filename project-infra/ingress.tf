@@ -42,15 +42,15 @@ locals {
 # }
 
 # Create Internet NEGs
-# resource "google_compute_global_network_endpoint_group" "internet_negs" {
-#   count                 = length(var.internet_neg_fqdn) > 0 ? 1 : 0
-#   project               = var.project_id
-#   name                  = var.internet_neg_name
-#   //name                  = join("internet-neg-apigee-",split(".","${var.internet_neg_fqdn}")[0])
-#   //name                  = format("internet-neg-apigee-,%s",split(".","${var.internet_neg_fqdn}")[0])
-#   network_endpoint_type = "INTERNET_FQDN_PORT"
-#   default_port          = var.internet_neg_port
-# }
+resource "google_compute_global_network_endpoint_group" "internet_negs" {
+  count                 = length(var.internet_neg_fqdn) > 0 ? 1 : 0
+  project               = var.project_id
+  name                  = var.internet_neg_name
+  //name                  = join("internet-neg-apigee-",split(".","${var.internet_neg_fqdn}")[0])
+  //name                  = format("internet-neg-apigee-,%s",split(".","${var.internet_neg_fqdn}")[0])
+  network_endpoint_type = "INTERNET_FQDN_PORT"
+  default_port          = var.internet_neg_port
+}
 
 # Create Network Endpoints for Internet NEGs
 # resource "google_compute_global_network_endpoint" "network_endpoint" {
