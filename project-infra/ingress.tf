@@ -16,15 +16,15 @@ locals {
       }
   ]
 
-  internet_neg_created = length(google_compute_global_network_endpoint_group.internet_negs) > 0
+  # internet_neg_created = length(google_compute_global_network_endpoint_group.internet_negs) > 0
 }
 
-data "google_secret_manager_secret_version" "certs" {
-  for_each = toset(var.ssl_certificates)
-  project  = var.secret_project_id
-  secret   = each.value
-  version  = "latest"
-}
+# data "google_secret_manager_secret_version" "certs" {
+#   for_each = toset(var.ssl_certificates)
+#   project  = var.secret_project_id
+#   secret   = each.value
+#   version  = "latest"
+# }
 
 # Classic self managed cert
 # resource "google_compute_ssl_certificate" "ssl_certificates" {

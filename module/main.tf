@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-locals {
-  backend_service_1_created = length(keys(google_compute_backend_service.psc_backend)) > 1
-}
+# locals {
+#   backend_service_1_created = length(keys(google_compute_backend_service.psc_backend)) > 1
+# }
 
 # resource "google_compute_backend_service" "psc_backend" {
 #   provider              = google-beta
