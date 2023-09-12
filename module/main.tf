@@ -26,7 +26,7 @@ resource "google_compute_backend_service" "psc_backend" {
   port_name             = "https"
   protocol              = "HTTPS"
   load_balancing_scheme = "EXTERNAL_MANAGED"
-  security_policy       = var.security_policy
+  # security_policy       = var.security_policy
 
   # backend {
   #   group = each.value
