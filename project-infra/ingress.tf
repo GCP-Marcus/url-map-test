@@ -110,7 +110,7 @@ module "nb-psc-l7xlb" {
   #   google_compute_ssl_certificate.ssl_certificates[0]
   # ]
 
-  source                  = "../modules/nb-psc-l7xlb"
+  source                  = "../module/nb-psc-l7xlb"
   project_id              = var.project_id
   name                    = "apigee-xlb-psc-${each.key}"
   network                 = var.network
