@@ -17,12 +17,13 @@
 variable "project_id" {
   description = "Project id (also used for the Apigee Organization)."
   type        = string
+  default = "direct-branch-378819"
 }
 
-variable "secret_project_id" {
-  description = "Secret Project id (also used for the Apigee Organization)."
-  type        = string
-}
+# variable "secret_project_id" {
+#   description = "Secret Project id (also used for the Apigee Organization)."
+#   type        = string
+# }
 
 # variable "ax_region" {
 #   description = "GCP region for storing Apigee analytics data (see https://cloud.google.com/apigee/docs/api-platform/get-started/install-cli)."
@@ -115,7 +116,7 @@ variable "apigee_org_kms_keyring_name" {
 variable "network" {
   description = "VPC network"
   type        = string
-  default     = ""
+  default     = "forgerock-network"
   nullable    = true
 }
 

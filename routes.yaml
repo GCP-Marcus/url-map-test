@@ -1,0 +1,110 @@
+
+ #   cdx-dev:
+      # - negfqdn: dev-edge.cdx.starbucks.com
+      #   name: cdx-dev
+      #   - host: apigw-dev.starbucks.com
+      #     - apigw-routes:
+      #     - /users/me/customer/
+      #     - /cicd-cache/*
+      #     - /sharedflow/test/httpsig
+      #     - /v1/websocket
+      #     - /v1/oauth/token
+      #   - host: apigw1-dev.starbucks.com
+      #     - apigw-routes:
+      #     - /users/me/customer/
+      #     - /cicd-cache/*
+      #     - /sharedflow/test/httpsig
+      #     - /v1/websocket
+      #     - /v1/oauth/token   
+        # apigw-routes:
+        #   - /users/me/customer/
+        #   - /cicd-cache/*
+        #   - /sharedflow/test/httpsig
+        #   - /v1/websocket
+        #   - /v1/oauth/token
+      # - neg: apigw-temp.starbucks.com
+      #   # name: cdx-dev
+      #   fqdn: dev-edg-temp.cdx.starbucks.com
+      #   apigw-routes:
+      #     - /users/me/customer/
+      #     - /cicd-cache/*
+      #     - /sharedflow/test/httpsig
+      #     - /v1/websocket
+      #     - /v1/oauth/token
+      # - neg: test14.openapi.starbucks.com
+      #   fqdn: oapi-master-edge.starbucks.com
+      #   apigw-routes:
+      #     - /v1/websocket
+      # - neg: test.openapi.starbucks.com
+      #   fqdn: test-edge.openapi.starbucks.com
+      #   apigw-routes:
+      #     - /*
+cdx-dev:
+  - fqdn: dev-edg-temp.cdx.starbucks.com
+    host-paths:
+      apigw1-dev.starbucks.com:
+        - /cicd-cache/*
+        - /v1/oauth/token
+      apigw2-dev.starbucks.com:
+        - /v1/oauth/edge
+  - fqdn: dev-edg-temp1.cdx.starbucks.com
+    host-paths:
+      apigw3-dev.starbucks.com:
+        - /sharedflow/test/httpsig
+      apigw4-dev.starbucks.com:
+        - /v1/websocket
+  - fqdn: dev-edge.cdx.starbucks.com
+    host-paths:
+      apigw-dev.starbucks.com:
+
+sbux-integration:
+  - fqdn: test-edge.openapi.starbucks.com
+    host-paths:
+      test.openapi.starbucks.com:
+  - fqdn: test-edge.oapi.starbucks.com
+    host-paths:
+      test.oapi.starbucks.com:
+  - fqdn: eapi-stable-edge.starbucks.com
+    host-paths:
+      eapi-ct.starbucks.com:
+      eapi-np.starbucks.com:
+      eapi-scmariba-st.starbucks.com:
+  - fqdn: ucp-stable-edge.starbucks.com
+    host-paths:
+      stage.ucp.starbucks.com:
+      ps.spc.starbucks.com:
+
+      # - neg: test14.openapi.starbucks.com
+      #   fqdn: oapi-master-edge.starbucks.com
+      #   apigw-routes:
+      #     - /v1/websocket
+      # - neg: test.openapi.starbucks.com
+      #   fqdn: test-edge.openapi.starbucks.com
+      #   apigw-routes:
+      #     - /*
+# hosts:
+#     cdx-dev:
+#       - neg: apigw-dev.starbucks.com
+#         fqdn: dev-edge.cdx.starbucks.com
+#           - /users/me/customer/
+#           - /cicd-cache/*
+#           - /sharedflow/test/httpsig
+#           - /v1/websocket
+#           - /v1/oauth/token
+#       - neg: test14.openapi.starbucks.com
+#         fqdn: oapi-master-edge.starbucks.com
+      #   apigw-routes:
+      #     - /v1/websocket
+      # - neg: test.openapi.starbucks.com
+      #   fqdn: test-edge.openapi.starbucks.com
+      #   apigw-routes:
+      #     - /*
+# cdx-dev:
+#   apigw-dev.starbucks.com:
+#     - /users/me/customer/
+#     - /cicd-cache/*
+#     - /sharedflow/test/httpsig
+#     - /abc/v2/test/*
+#     - /v1/websocket
+#     - /v1/oauth/token
+#   test14.openapi.starbucks.com:
