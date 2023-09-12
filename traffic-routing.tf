@@ -96,7 +96,7 @@ module "sbux-cdx-dev-routing" {
   # for_each = tomap(local.data.hosts.sbux-integration)
 
   for_each = { for k, v in local.data.cdx-dev : k => v }
-  source = "./modules/project-infra"
+  source ="./project-infra" #"./modules/project-infra"
   project_id = "sbux-cdx-dev"
   internet_neg_name=replace(each.value.fqdn, ".","-")  
   //internet_neg = each.value.neg //apigw-dev.starbucks.com
@@ -110,9 +110,11 @@ module "sbux-cdx-dev-routing" {
 
   internet_neg_apigee_x_host_paths={"apigw1-dev.starbucks.com" = ["/users/me/customer/*","/v1/oauth/token"]} 
   //tomap ({(each.value.neg) = (each.value.apigw-routes)})
-  secret_project_id = "apigee-shared-resources-bc85"
+  # secret_project_id = "apigee-shared-resources-bc85"
   //more_things = each.value.more-things
 }
+
+
 
 module "sbux-integration-routing" {
   # for_each = local.data.hosts.sbux-integration
@@ -120,7 +122,7 @@ module "sbux-integration-routing" {
   # for_each = tomap(local.data.hosts.sbux-integration)
 
   for_each = { for k, v in local.data.sbux-integration : k => v }
-  source = "./modules/project-infra"
+  source = "./project-infra"#"./modules/project-infra"
   project_id = "sbux-integration"
   internet_neg_name=replace(each.value.fqdn, ".","-")
   //internet_neg = each.value.neg //apigw-dev.starbucks.com
