@@ -19,7 +19,7 @@ locals {
 }
 
 resource "google_compute_backend_service" "psc_backend" {
-  provider              = google-beta
+  # provider              = google-beta
   for_each              = var.psc_negs
   project               = var.project_id
   name                  = "${var.name}-backend-${each.key}"
