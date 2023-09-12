@@ -7,16 +7,16 @@
 
 
 locals {
-  ssl_certificates = [
-    for cert in data.google_secret_manager_secret_version.certs :
-      {
-        name        = nonsensitive(jsondecode(cert.secret_data)["name"])
-        certificate = jsondecode(cert.secret_data)["certificate"]
-        private_key = jsondecode(cert.secret_data)["private_key"]
-      }
-  ]
+  # ssl_certificates = [
+  #   for cert in data.google_secret_manager_secret_version.certs :
+  #     {
+  #       name        = nonsensitive(jsondecode(cert.secret_data)["name"])
+  #       certificate = jsondecode(cert.secret_data)["certificate"]
+  #       private_key = jsondecode(cert.secret_data)["private_key"]
+  #     }
+  # ]
 
-  # internet_neg_created = length(google_compute_global_network_endpoint_group.internet_negs) > 0
+  internet_neg_created = length(google_compute_global_network_endpoint_group.internet_negs) > 0
 }
 
 # data "google_secret_manager_secret_version" "certs" {
@@ -63,25 +63,25 @@ locals {
 
 
 # # Create PSC NEGs for the backend
-# resource "google_compute_region_network_endpoint_group" "psc_neg" {
-#   for_each = var.instance_service_attachments
+resource "google_compute_region_network_endpoint_group" "psc_neg" {
+  for_each = var.instance_service_attachments
 
-#   project = var.project_id
-#   name    = "psc-neg-us-${each.key}" # Append the region to the name
+  project = var.project_id
+  name    = "psc-neg-us-${each.key}" # Append the region to the name
 
-#   region  = each.key # Region is the key 
-#   network = var.network
+  region  = each.key # Region is the key 
+  network = var.network
 
-#   subnetwork = lookup(var.region_networks, each.key) # Finds the subnet for the region
+  subnetwork = lookup(var.region_networks, each.key) # Finds the subnet for the region
 
-#   network_endpoint_type = "PRIVATE_SERVICE_CONNECT"
+  network_endpoint_type = "PRIVATE_SERVICE_CONNECT"
 
-#   psc_target_service = each.value
+  psc_target_service = each.value
 
-#   lifecycle {
-#     create_before_destroy = true
-#   }
-# }
+  lifecycle {
+    create_before_destroy = true
+  }
+}
 
 ##########
 
