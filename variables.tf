@@ -40,6 +40,7 @@ variable "psc_service_attachments" {
 variable "name" {
   description = "External LB name."
   type        = string
+  default = "cdx-dev"
 }
 
 # variable "network" {
