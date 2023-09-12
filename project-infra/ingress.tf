@@ -120,7 +120,7 @@ module "nb-psc-l7xlb" {
   # external_ip = google_compute_global_address.lb_ip[each.key].id
 
   # Checks if internet-neg has been created already, if yes then create a map consisting of psc-neg and internet-neg, if not then create map of psc-neg only 
-  # psc_negs = local.internet_neg_created ? { for k, v in tomap({"psc-neg" = google_compute_region_network_endpoint_group.psc_neg[each.key].id,"internet-neg" = [ for neg in google_compute_global_network_endpoint_group.internet_negs : neg.id ]}) : k => v } : { for k, v in tomap({"psc-neg" = google_compute_region_network_endpoint_group.psc_neg[each.key].id}) : k => v }
+  psc_negs = local.internet_neg_created ? { for k, v in tomap({"psc-neg" = google_compute_region_network_endpoint_group.psc_neg[each.key].id,"internet-neg" = [ for neg in google_compute_global_network_endpoint_group.internet_negs : neg.id ]}) : k => v } : { for k, v in tomap({"psc-neg" = google_compute_region_network_endpoint_group.psc_neg[each.key].id}) : k => v }
   
 
   host_path_map = var.internet_neg_apigee_x_host_paths # may need to construct a sample map 

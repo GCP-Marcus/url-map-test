@@ -55,6 +55,7 @@ variable "network" {
 variable "psc_negs" {
   description = "List of PSC NEGs to be used as backends."
   type        = map(string)
+  default = {}
 }
 
 # variable "labels" {
